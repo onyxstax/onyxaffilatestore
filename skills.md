@@ -1,59 +1,51 @@
 # Skills
 
-## Tech Stack
+## About Me
 
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Frontend**: Vanilla HTML/CSS (static, no build step)
-- **Config**: dotenv (`.env` file)
+- **Experience level**: Beginner
+- **Focus area**: E-commerce & Affiliate Marketing
+- **Currently learning**: Getting started — no specific tools yet
 
-## Project Overview
+## Project Tech Stack
 
-Amazon affiliate storefront with a static HTML frontend and a lightweight Express API backend. API routes are protected by an API key sent via the `X-API-Key` header or `?api_key=` query parameter.
+This project is a great starting point for learning the following:
 
-## Key Files
+| Skill | Used In |
+|-------|---------|
+| HTML / CSS | `index.html` — storefront layout and styling |
+| JavaScript (Node.js) | `server.js` — backend server logic |
+| Express.js | API routes and middleware |
+| dotenv | Managing environment variables securely |
 
-| File | Purpose |
-|------|---------|
-| `server.js` | Express server — static file serving, API key middleware, `/api/products` route |
-| `index.html` | Static storefront — product listings with affiliate links |
-| `package.json` | Dependencies (`express`, `dotenv`) and npm scripts |
-| `.env.example` | Template for required environment variables |
+## Learning Roadmap
 
-## Environment Variables
+Since this is an affiliate store project, here's a suggested path to build relevant skills:
 
-| Variable | Description |
-|----------|-------------|
-| `PORT` | Port the server listens on (default: `3000`) |
-| `API_KEY` | Secret key required for all `/api/*` requests |
+### Step 1 — Web Basics
+- HTML structure (elements, links, images)
+- CSS styling (colors, layout, responsive design)
 
-## Running the Project
+### Step 2 — JavaScript Fundamentals
+- Variables, functions, loops
+- Working with the DOM (updating the page from JS)
 
-```bash
-cp .env.example .env   # set API_KEY (and optionally PORT)
-npm install
-npm start              # production
-npm run dev            # development (auto-restarts on file changes)
-```
+### Step 3 — Node.js & Express (Backend)
+- Understanding `server.js` in this project
+- How API routes and middleware work
+- Reading and setting environment variables (`.env`)
 
-## API
+### Step 4 — E-commerce Concepts
+- How affiliate links work (Amazon Associates tag)
+- API authentication (API keys — already used in this project)
+- Displaying dynamic product data from an API
 
-### Authentication
+### Step 5 — Deployment
+- Hosting on platforms like Railway, Render, or Vercel
+- Setting environment variables in production
 
-All `/api/*` routes require a valid API key, passed as:
-- Header: `X-API-Key: <key>`
-- Query param: `?api_key=<key>`
+## Goals
 
-Unauthorized requests receive `401 Unauthorized`.
-
-### Endpoints
-
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET` | `/api/products` | Returns a list of affiliate products |
-
-## Development Notes
-
-- The static frontend (`index.html`) is served publicly — no auth required.
-- Amazon affiliate tag should be set in `server.js` (replace `your-tag` in the `affiliateUrl` values).
-- Product data is currently hardcoded in `server.js`; extend with a database or external source as needed.
+- Build a fully functional Amazon affiliate store
+- Learn to add real product data (from Amazon API or manually)
+- Style the storefront to look professional
+- Deploy the site publicly
