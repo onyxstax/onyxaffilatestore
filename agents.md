@@ -88,6 +88,25 @@ Public routes (the static storefront at `/`) require no authentication.
 - No tests exist yet. When adding tests, place them in a `test/` directory and use a standard Node test runner (e.g. `node:test` or Jest).
 - Keep middleware functions in `server.js` unless the file grows large enough to warrant splitting.
 
+## How the Owner Thinks (Agent Behaviour)
+
+These preferences come directly from the project owner. Follow them on every task.
+
+**Planning:** Features are planned by talking through the approach before any code is written. If a task is non-trivial, summarise the plan in plain language and confirm the direction before starting.
+
+**Decision-making:** Make the call and report what you did. Don't ask permission for routine decisions. For anything large — changing the architecture, adding a new dependency, restructuring files, or any action that could affect code on the owner's local machine — stop and ask for explicit consent first.
+
+**Code quality, in order of priority:**
+1. Works correctly — no half-broken implementations shipped.
+2. Clean and reliable — code should be trustworthy and maintainable.
+3. Readable — a fresh reader should understand it without explanation.
+4. Simple — no extras, no abstractions that aren't earned yet.
+5. Elegant ("sexy when possible") — if the clean solution is also the beautiful one, choose it.
+
+**What never to do without asking:**
+- Any change that would modify files on the owner's personal laptop (local filesystem outside this repo).
+- Any action with wide blast radius that can't easily be undone.
+
 ## Security Notes
 
 - Never commit `.env` — it is listed in `.gitignore`.
