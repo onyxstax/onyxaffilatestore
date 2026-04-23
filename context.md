@@ -4,7 +4,9 @@ High-level background for anyone (human or AI) coming to this project fresh.
 
 ## What This Is
 
-A lightweight Amazon affiliate storefront. The goal is to display curated products with affiliate tracking links so that purchases made through the store generate commission via the Amazon Associates program.
+A lightweight Amazon affiliate storefront focused on **health and self-wellness products**. The goal is to display curated products with affiliate tracking links so that purchases made through the store generate commission via the Amazon Associates program.
+
+**Amazon Associates tracking tag:** `onyx01a-20`
 
 ## Why It Exists
 
@@ -31,6 +33,10 @@ Likely next steps (not committed, subject to owner decisions):
 - Store curated ASINs or product lists in a config file or lightweight database.
 - Improve the frontend to dynamically render products fetched from `/api/products`.
 - Add categories, search, or filtering as the catalogue grows.
+
+## Deployment
+
+Currently runs **locally only**. There is no live public deployment. All development and testing happens on the owner's local machine.
 
 ## Key Constraints
 

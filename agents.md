@@ -4,7 +4,9 @@ This file describes the project for AI coding agents (e.g. Claude Code). Read it
 
 ## Project Overview
 
-Amazon affiliate storefront with a Node.js/Express API backend and a static HTML frontend. The server exposes product data through authenticated API routes; the frontend renders products as a simple storefront page.
+Amazon affiliate storefront focused on **health and self-wellness products**. The server exposes product data through authenticated API routes; the frontend renders products as a simple storefront page.
+
+**Amazon Associates tracking tag:** `onyx01a-20` — use this tag in every affiliate URL. Format: `https://www.amazon.com/dp/<ASIN>/?tag=onyx01a-20`
 
 ## Repository Layout
 
@@ -79,7 +81,7 @@ Public routes (the static storefront at `/`) require no authentication.
 - **Add an API endpoint:** Register a new route in `server.js` under the `/api` namespace. The `requireApiKey` middleware is applied to the entire `/api` prefix, so new routes are automatically protected.
 - **Update the storefront:** Edit `index.html`. There is no build pipeline; changes are served immediately on the next request.
 - **Add dependencies:** `npm install <package>` and `require` it in `server.js`.
-- **Replace placeholder products:** Update the array in the `GET /api/products` handler, or replace it with a database/external API call.
+- **Replace placeholder products:** Update the array in the `GET /api/products` handler, or replace it with a database/external API call. All products should be health and self-wellness related. Always use the tracking tag `onyx01a-20` in affiliate URLs.
 
 ## Code Conventions
 
