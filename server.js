@@ -13,7 +13,6 @@ if (!API_KEY) {
 
 app.use(express.json());
 
-// Authenticate requests by checking the X-API-Key header or api_key query param.
 function requireApiKey(req, res, next) {
   const key = req.headers['x-api-key'] || req.query.api_key;
   if (!key || key !== API_KEY) {
@@ -24,13 +23,10 @@ function requireApiKey(req, res, next) {
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
-// Serve the static storefront without authentication.
 app.use(express.static(path.join(__dirname)));
 
-// All /api/* routes require a valid API key.
 app.use('/api', requireApiKey);
 
-// Example: list products (extend as needed).
 app.get('/api/products', (req, res) => {
   res.json({
     products: [
@@ -41,7 +37,11 @@ app.get('/api/products', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-  console.log('API routes are protected by API key (X-API-Key header or ?api_key= query param)');
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+    console.log('API routes are protected by API key (X-API-Key header or ?api_key= query param)');
+  });
+}
+
+module.exports = app;
