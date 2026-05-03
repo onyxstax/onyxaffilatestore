@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: onyxaffilatestore
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: API_KEY
+        sync: false
+      - key: PORT
+        value: 3000
