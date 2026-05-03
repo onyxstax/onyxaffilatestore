@@ -22,6 +22,8 @@ function requireApiKey(req, res, next) {
   next();
 }
 
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
+
 // Serve the static storefront without authentication.
 app.use(express.static(path.join(__dirname)));
 

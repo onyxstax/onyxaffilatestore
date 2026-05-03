@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev)",
+      "Bash(npm start)",
+      "Bash(npm install*)",
+      "Bash(node server.js)",
+      "Bash(cp .env.example .env)"
+    ]
+  }
+}
