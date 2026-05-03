@@ -2,11 +2,14 @@ services:
   - type: web
     name: onyxaffilatestore
     runtime: node
-    buildCommand: npm install
+    buildCommand: npm install --production
     startCommand: npm start
     healthCheckPath: /health
+    nodeVersion: 20.11.0
     envVars:
       - key: API_KEY
         sync: false
       - key: PORT
         value: 3000
+      - key: NODE_ENV
+        value: production
