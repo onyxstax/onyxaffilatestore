@@ -1,76 +1,1526 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Affiliate Store</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .product {
-            border: 1px solid #ddd;
-            margin: 10px;
-            padding: 10px;
-            text-align: center;
-            border-radius: 5px;
-        }
-        .product img {
-            max-width: 100%;
-            height: auto;
-        }
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            background: #333;
-            color: white;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Onyx AI & Improvement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ONYX AI — EDIT MODE PASSWORD: onyx2024
+   To change password: search "EDIT_PASSWORD" in this file
+   ============================================================ */
+
+:root {
+  --bg:        #03030a;
+  --bg2:       #080810;
+  --bg3:       #0e0e1c;
+  --purple:    #7c3aed;
+  --purple2:   #a855f7;
+  --gold:      #f59e0b;
+  --gold2:     #fbbf24;
+  --text:      #f1f5f9;
+  --muted:     #94a3b8;
+  --glass:     rgba(255,255,255,0.04);
+  --glass2:    rgba(255,255,255,0.08);
+  --border:    rgba(255,255,255,0.08);
+  --border2:   rgba(124,58,237,0.3);
+  --glow:      rgba(124,58,237,0.25);
+  --glow-gold: rgba(245,158,11,0.2);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 2px; }
+
+/* ── TYPOGRAPHY ── */
+h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 1.1; }
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed;
+  top: 16px; left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  max-width: 1200px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: rgba(8,8,16,0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all 300ms ease;
+}
+
+nav.scrolled {
+  background: rgba(3,3,10,0.9);
+  border-color: var(--border2);
+  box-shadow: 0 0 40px var(--glow);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-logo-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--purple), var(--purple2));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px var(--glow);
+}
+
+.nav-logo-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  background: linear-gradient(90deg, #fff 0%, var(--purple2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 200ms ease;
+}
+.nav-links a:hover { color: var(--text); }
+
+.nav-cta {
+  background: linear-gradient(135deg, var(--purple), var(--purple2));
+  color: #fff !important;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600 !important;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 200ms ease;
+  box-shadow: 0 0 20px var(--glow);
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 0 30px var(--glow); }
+
+.nav-mobile-toggle { display: none; cursor: pointer; }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 120px 24px 80px;
+  overflow: hidden;
+}
+
+/* Animated gradient orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: orb-float 8s ease-in-out infinite;
+}
+.orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(124,58,237,0.3), transparent 70%);
+  top: -100px; left: -100px;
+  animation-delay: 0s;
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(245,158,11,0.15), transparent 70%);
+  bottom: -50px; right: -50px;
+  animation-delay: -3s;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(168,85,247,0.2), transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  animation-delay: -6s;
+}
+
+@keyframes orb-float {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(30px,-20px) scale(1.05); }
+  66% { transform: translate(-20px,15px) scale(0.97); }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--glass2);
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--purple2);
+  margin-bottom: 28px;
+  backdrop-filter: blur(10px);
+}
+
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: var(--purple2);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero-title {
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 700;
+  line-height: 1.0;
+  margin-bottom: 24px;
+  letter-spacing: -2px;
+}
+
+.hero-title .line-1 { color: var(--text); display: block; }
+.hero-title .line-2 {
+  display: block;
+  background: linear-gradient(90deg, var(--purple), var(--purple2), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: gradient-shift 4s ease infinite;
+}
+@keyframes gradient-shift {
+  0% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--muted);
+  max-width: 640px;
+  margin: 0 auto 44px;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--purple), var(--purple2));
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 250ms ease;
+  box-shadow: 0 0 30px var(--glow), 0 4px 15px rgba(0,0,0,0.3);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px var(--glow), 0 8px 25px rgba(0,0,0,0.4); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--glass);
+  color: var(--text);
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid var(--border2);
+  transition: all 250ms ease;
+  backdrop-filter: blur(10px);
+}
+.btn-secondary:hover { background: var(--glass2); transform: translateY(-2px); border-color: var(--purple2); }
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+}
+
+.stat { text-align: center; }
+.stat-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--text), var(--purple2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-label { font-size: 13px; color: var(--muted); font-weight: 500; margin-top: 4px; }
+
+/* ── SECTION COMMON ── */
+section { position: relative; z-index: 2; padding: 100px 24px; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--purple2);
+  margin-bottom: 20px;
+}
+
+.section-tag::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--purple2);
+}
+
+.section-title {
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+.section-desc {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border2), transparent);
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* ── PHILOSOPHY ── */
+#philosophy { background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%); }
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 64px;
+}
+
+.philosophy-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 32px;
+  transition: all 300ms ease;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.philosophy-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(124,58,237,0.06), transparent);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  border-radius: inherit;
+}
+
+.philosophy-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 30px var(--glow); }
+.philosophy-card:hover::before { opacity: 1; }
+
+.philosophy-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--purple), transparent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+}
+
+.philosophy-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.philosophy-card p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ── PILLARS ── */
+#pillars { background: var(--bg2); }
+
+.pillars-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; margin-bottom: 64px; }
+
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.pillar-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  transition: all 300ms ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.pillar-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--purple2));
+  transform: scaleX(0);
+  transition: transform 300ms ease;
+}
+
+.pillar-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+.pillar-card:hover::after { transform: scaleX(1); }
+
+.pillar-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.pillar-icon svg { width: 26px; height: 26px; }
+
+.pillar-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.pillar-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+.pillar-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.pillar-tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--glass2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+/* Pillar color schemes */
+.pillar-mind .pillar-icon { background: rgba(124,58,237,0.15); color: var(--purple2); }
+.pillar-body .pillar-icon { background: rgba(16,185,129,0.12); color: #10b981; }
+.pillar-wealth .pillar-icon { background: rgba(245,158,11,0.12); color: var(--gold); }
+.pillar-relationships .pillar-icon { background: rgba(239,68,68,0.12); color: #ef4444; }
+.pillar-career .pillar-icon { background: rgba(59,130,246,0.12); color: #3b82f6; }
+.pillar-soul .pillar-icon { background: rgba(251,191,36,0.1); color: var(--gold2); }
+
+/* ── MANIFESTO QUOTE ── */
+#manifesto {
+  background: linear-gradient(180deg, var(--bg2) 0%, var(--bg3) 100%);
+  padding: 120px 24px;
+  text-align: center;
+}
+
+.manifesto-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.manifesto-quote-mark {
+  font-size: 200px;
+  line-height: 0.6;
+  font-family: 'Space Grotesk', sans-serif;
+  background: linear-gradient(135deg, var(--purple), transparent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  margin-bottom: 16px;
+  pointer-events: none;
+}
+
+.manifesto-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(22px, 3vw, 38px);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  margin-bottom: 32px;
+}
+
+.manifesto-text em {
+  background: linear-gradient(90deg, var(--purple2), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: normal;
+}
+
+.manifesto-author {
+  font-size: 15px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ── TRANSFORMATION STEPS ── */
+#transform { background: var(--bg3); }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 64px;
+  position: relative;
+}
+
+.steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: calc(12.5% + 20px);
+  right: calc(12.5% + 20px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--purple), var(--purple2), var(--gold), var(--purple2));
+  z-index: 0;
+}
+
+.step-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  transition: all 300ms ease;
+  cursor: default;
+}
+
+.step-card:hover { border-color: var(--border2); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+
+.step-number {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, var(--purple), var(--purple2));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  margin: 0 auto 24px;
+  box-shadow: 0 0 20px var(--glow);
+}
+
+.step-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.step-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* ── SOCIAL MEDIA ── */
+#social {
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--bg) 100%);
+  text-align: center;
+}
+
+.social-subtitle { font-size: 18px; color: var(--muted); margin: 16px auto 64px; max-width: 480px; line-height: 1.6; }
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.social-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 24px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transition: all 300ms ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 300ms ease;
+  border-radius: inherit;
+}
+
+.social-card:hover { transform: translateY(-6px); border-color: transparent; }
+.social-card:hover::before { opacity: 1; }
+
+/* Platform colors */
+.social-tiktok:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(0,242,234,0.2); }
+.social-tiktok::before { background: linear-gradient(135deg, rgba(0,242,234,0.08), rgba(255,0,80,0.08)); }
+
+.social-instagram:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(225,48,108,0.2); }
+.social-instagram::before { background: linear-gradient(135deg, rgba(225,48,108,0.08), rgba(253,171,52,0.08)); }
+
+.social-youtube:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(255,0,0,0.2); }
+.social-youtube::before { background: linear-gradient(135deg, rgba(255,0,0,0.08), rgba(180,0,0,0.05)); }
+
+.social-twitter:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(29,161,242,0.2); }
+.social-twitter::before { background: linear-gradient(135deg, rgba(29,161,242,0.08), transparent); }
+
+.social-icon {
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.social-icon svg { width: 28px; height: 28px; }
+
+.social-card h3 { font-size: 18px; font-weight: 700; }
+.social-card p { font-size: 13px; color: var(--muted); text-align: center; }
+.social-handle { font-size: 13px; font-weight: 600; color: var(--purple2); }
+
+/* ── CTA SECTION ── */
+#cta {
+  padding: 100px 24px;
+  background: var(--bg);
+}
+
+.cta-box {
+  max-width: 900px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(168,85,247,0.06), rgba(245,158,11,0.06));
+  border: 1px solid var(--border2);
+  border-radius: 28px;
+  padding: 72px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(124,58,237,0.2), transparent 70%);
+  pointer-events: none;
+}
+
+.cta-box h2 {
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+.cta-box p {
+  font-size: 18px;
+  color: var(--muted);
+  margin-bottom: 44px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.email-form {
+  display: flex;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.email-input {
+  flex: 1;
+  min-width: 220px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 14px 20px;
+  color: var(--text);
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 200ms ease;
+}
+.email-input::placeholder { color: var(--muted); }
+.email-input:focus { border-color: var(--purple2); box-shadow: 0 0 0 3px rgba(168,85,247,0.15); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 60px 24px 40px;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 48px;
+  flex-wrap: wrap;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  color: var(--muted);
+  max-width: 280px;
+  line-height: 1.6;
+  margin-top: 16px;
+}
+
+.footer-links-group h4 {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.footer-links-group ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-links-group a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 200ms ease; cursor: pointer; }
+.footer-links-group a:hover { color: var(--text); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom p { font-size: 13px; color: var(--muted); }
+
+.footer-social-links {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social-links a {
+  width: 36px; height: 36px;
+  background: var(--glass2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  text-decoration: none;
+  transition: all 200ms ease;
+  cursor: pointer;
+}
+.footer-social-links a:hover { background: var(--border2); color: var(--text); border-color: var(--purple2); }
+.footer-social-links svg { width: 16px; height: 16px; }
+
+/* ── EDIT MODE ── */
+#edit-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: linear-gradient(90deg, var(--purple), var(--purple2));
+  padding: 10px 24px;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+#edit-bar.active { display: flex; }
+
+#edit-bar span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.edit-bar-actions { display: flex; gap: 8px; }
+
+.edit-btn {
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms ease;
+  font-family: inherit;
+}
+.edit-save { background: #fff; color: var(--purple); }
+.edit-save:hover { background: #f0e6ff; }
+.edit-cancel { background: rgba(255,255,255,0.2); color: #fff; }
+.edit-cancel:hover { background: rgba(255,255,255,0.3); }
+.edit-links-btn { background: rgba(255,255,255,0.15); color: #fff; }
+.edit-links-btn:hover { background: rgba(255,255,255,0.25); }
+
+.editable:focus-visible {
+  outline: 2px dashed rgba(168,85,247,0.8);
+  outline-offset: 4px;
+  border-radius: 4px;
+  background: rgba(124,58,237,0.08);
+}
+
+/* ── SOCIAL LINKS MODAL ── */
+#links-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+#links-modal.open { display: flex; }
+
+.links-modal-box {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 520px;
+}
+
+.links-modal-box h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.link-field { margin-bottom: 20px; }
+.link-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.link-field input {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 200ms ease;
+}
+.link-field input:focus { border-color: var(--purple2); }
+.link-field input::placeholder { color: var(--muted); }
+
+.links-modal-actions { display: flex; gap: 12px; margin-top: 32px; }
+
+/* ── ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .philosophy-grid { grid-template-columns: repeat(2, 1fr); }
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid::before { display: none; }
+  .social-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-mobile-toggle { display: block; }
+  .philosophy-grid { grid-template-columns: 1fr; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .social-grid { grid-template-columns: repeat(2, 1fr); }
+  .cta-box { padding: 48px 28px; }
+  .footer-top { flex-direction: column; gap: 32px; }
+  nav { width: calc(100% - 24px); padding: 12px 20px; }
+  section { padding: 72px 20px; }
+  .hero-stats { gap: 32px; }
+}
+
+@media (max-width: 480px) {
+  .social-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 24px; }
+  .stat-number { font-size: 28px; }
+}
+</style>
 </head>
 <body>
-    <header>
-        <h1>Your Amazon Affiliate Store</h1>
-    </header>
-    <div class="container">
-        <h2>Featured Products</h2>
-        <div class="product">
-            <img src="placeholder1.jpg" alt="Product 1">
-            <h3>Product Title 1</h3>
-            <p>Product description goes here.</p>
-            <a href="https://affiliate.link/product1">Buy Now</a>
-        </div>
-        <div class="product">
-            <img src="placeholder2.jpg" alt="Product 2">
-            <h3>Product Title 2</h3>
-            <p>Product description goes here.</p>
-            <a href="https://affiliate.link/product2">Buy Now</a>
-        </div>
-        <div class="product">
-            <img src="placeholder3.jpg" alt="Product 3">
-            <h3>Product Title 3</h3>
-            <p>Product description goes here.</p>
-            <a href="https://affiliate.link/product3">Buy Now</a>
-        </div>
+
+<!-- ═══ EDIT BAR ═══ -->
+<div id="edit-bar">
+  <span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    EDIT MODE — Click any text to edit it
+  </span>
+  <div class="edit-bar-actions">
+    <button class="edit-btn edit-links-btn" onclick="openLinksModal()">Update Social Links</button>
+    <button class="edit-btn edit-save" onclick="saveEdits()">Save Changes</button>
+    <button class="edit-btn edit-cancel" onclick="cancelEdits()">Exit Edit Mode</button>
+  </div>
+</div>
+
+<!-- ═══ SOCIAL LINKS MODAL ═══ -->
+<div id="links-modal">
+  <div class="links-modal-box">
+    <h3>Update Social Media Links</h3>
+    <div class="link-field"><label>TikTok URL</label><input type="url" id="link-tiktok" placeholder="https://tiktok.com/@yourhandle"></div>
+    <div class="link-field"><label>Instagram URL</label><input type="url" id="link-instagram" placeholder="https://instagram.com/yourhandle"></div>
+    <div class="link-field"><label>YouTube URL</label><input type="url" id="link-youtube" placeholder="https://youtube.com/@yourchannel"></div>
+    <div class="link-field"><label>Twitter / X URL</label><input type="url" id="link-twitter" placeholder="https://x.com/yourhandle"></div>
+    <div class="links-modal-actions">
+      <button class="btn-primary" onclick="saveLinks()" style="font-size:14px;padding:10px 24px;">Save Links</button>
+      <button class="btn-secondary" onclick="closeLinksModal()" style="font-size:14px;padding:10px 24px;">Cancel</button>
     </div>
-    <footer>
-        <p>© 2026 Your Amazon Affiliate Store</p>
-    </footer>
+  </div>
+</div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero" id="logo-click">
+    <div class="nav-logo-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="2" x2="12" y2="22"/><path d="M2 8.5l10 7 10-7"/></svg>
+    </div>
+    <span class="nav-logo-text">ONYX AI</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#pillars">Pillars</a></li>
+    <li><a href="#transform">Transform</a></li>
+    <li><a href="#social">Connect</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Start Your Journey</a>
+  <div class="nav-mobile-toggle" onclick="toggleMobileMenu()">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div style="position:relative;z-index:2;width:100%;max-width:900px;">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      <span class="editable" data-key="hero-badge">The Future of Self-Mastery is Here</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="line-1 editable" data-key="hero-line1">Become the</span>
+      <span class="line-2 editable" data-key="hero-line2">Best Version of You</span>
+    </h1>
+    <p class="hero-sub editable" data-key="hero-sub">Onyx AI is your intelligent guide to total life transformation — mastering your mind, body, wealth, relationships, and purpose. No fluff. Pure results.</p>
+    <div class="hero-buttons">
+      <a href="#cta" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <span class="editable" data-key="hero-cta1">Begin Transformation</span>
+      </a>
+      <a href="#pillars" class="btn-secondary">
+        <span class="editable" data-key="hero-cta2">Explore the Method</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat fade-up">
+        <div class="stat-number editable" data-key="stat1-num">10K+</div>
+        <div class="stat-label editable" data-key="stat1-label">Lives Transformed</div>
+      </div>
+      <div class="stat fade-up">
+        <div class="stat-number editable" data-key="stat2-num">6</div>
+        <div class="stat-label editable" data-key="stat2-label">Life Pillars Mastered</div>
+      </div>
+      <div class="stat fade-up">
+        <div class="stat-number editable" data-key="stat3-num">100%</div>
+        <div class="stat-label editable" data-key="stat3-label">Commitment to Your Growth</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ PHILOSOPHY ═══ -->
+<section id="philosophy">
+  <div class="section-inner">
+    <div style="max-width:620px;">
+      <div class="section-tag">The Onyx Code</div>
+      <h2 class="section-title editable" data-key="philosophy-title">Built on a Foundation of Truth</h2>
+      <p class="section-desc editable" data-key="philosophy-desc">Three core beliefs that separate those who evolve from those who stay the same. This is the philosophy that drives everything.</p>
+    </div>
+    <div class="philosophy-grid">
+      <div class="philosophy-card fade-up">
+        <div class="philosophy-number">01</div>
+        <h3 class="editable" data-key="phil1-title">Discipline is Freedom</h3>
+        <p class="editable" data-key="phil1-desc">True freedom is not doing whatever you want — it's having built the discipline to do what matters. The person who controls their habits controls their destiny.</p>
+      </div>
+      <div class="philosophy-card fade-up">
+        <div class="philosophy-number">02</div>
+        <h3 class="editable" data-key="phil2-title">Growth is Non-Negotiable</h3>
+        <p class="editable" data-key="phil2-desc">You are either growing or declining — there is no staying the same. Every single day is a vote for the person you are becoming. Choose growth, every time.</p>
+      </div>
+      <div class="philosophy-card fade-up">
+        <div class="philosophy-number">03</div>
+        <h3 class="editable" data-key="phil3-title">Excellence in All Areas</h3>
+        <p class="editable" data-key="phil3-desc">A chain breaks at its weakest link. You cannot dominate your career while neglecting your health. True success demands excellence across every dimension of life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ PILLARS ═══ -->
+<section id="pillars">
+  <div class="section-inner">
+    <div class="pillars-header">
+      <div>
+        <div class="section-tag">The Six Pillars</div>
+        <h2 class="section-title editable" data-key="pillars-title">Every Area.<br>Elevated.</h2>
+      </div>
+      <p class="section-desc editable" data-key="pillars-desc">Most people improve one area and let others rot. Onyx AI targets all six pillars of human excellence simultaneously.</p>
+    </div>
+    <div class="pillars-grid">
+
+      <!-- Mind -->
+      <div class="pillar-card pillar-mind fade-up">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.45-4.04 3 3 0 0 1-3.09-2 3 3 0 0 1 1.07-3.07 2 2 0 0 1-1.09-2A2 2 0 0 1 4.5 6a2.5 2.5 0 0 1 5-4z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.45-4.04 3 3 0 0 0 3.09-2 3 3 0 0 0-1.07-3.07 2 2 0 0 0 1.09-2A2 2 0 0 0 19.5 6a2.5 2.5 0 0 0-5-4z"/></svg>
+        </div>
+        <h3 class="editable" data-key="pillar1-title">Mental Mastery</h3>
+        <p class="editable" data-key="pillar1-desc">Rewire your mindset for relentless focus, unshakeable confidence, and peak cognitive performance. Your mind is your most powerful weapon.</p>
+        <div class="pillar-tags">
+          <span class="pillar-tag editable" data-key="pillar1-t1">Mindset</span>
+          <span class="pillar-tag editable" data-key="pillar1-t2">Focus</span>
+          <span class="pillar-tag editable" data-key="pillar1-t3">Resilience</span>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="pillar-card pillar-body fade-up">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <h3 class="editable" data-key="pillar2-title">Physical Excellence</h3>
+        <p class="editable" data-key="pillar2-desc">Build a body that performs and commands respect. Optimise your training, nutrition, recovery and energy so you operate at 100% every single day.</p>
+        <div class="pillar-tags">
+          <span class="pillar-tag editable" data-key="pillar2-t1">Fitness</span>
+          <span class="pillar-tag editable" data-key="pillar2-t2">Nutrition</span>
+          <span class="pillar-tag editable" data-key="pillar2-t3">Energy</span>
+        </div>
+      </div>
+
+      <!-- Wealth -->
+      <div class="pillar-card pillar-wealth fade-up">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 class="editable" data-key="pillar3-title">Financial Freedom</h3>
+        <p class="editable" data-key="pillar3-desc">Break free from financial limitation. Master income generation, smart investing, and wealth-building strategies to create lasting abundance and options in life.</p>
+        <div class="pillar-tags">
+          <span class="pillar-tag editable" data-key="pillar3-t1">Income</span>
+          <span class="pillar-tag editable" data-key="pillar3-t2">Investing</span>
+          <span class="pillar-tag editable" data-key="pillar3-t3">Wealth</span>
+        </div>
+      </div>
+
+      <!-- Relationships -->
+      <div class="pillar-card pillar-relationships fade-up">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="editable" data-key="pillar4-title">Deep Relationships</h3>
+        <p class="editable" data-key="pillar4-desc">Cultivate genuine connections that elevate you. Build your network, master communication, and surround yourself with people who push you to be greater.</p>
+        <div class="pillar-tags">
+          <span class="pillar-tag editable" data-key="pillar4-t1">Network</span>
+          <span class="pillar-tag editable" data-key="pillar4-t2">Communication</span>
+          <span class="pillar-tag editable" data-key="pillar4-t3">Leadership</span>
+        </div>
+      </div>
+
+      <!-- Career -->
+      <div class="pillar-card pillar-career fade-up">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3 class="editable" data-key="pillar5-title">Career & Purpose</h3>
+        <p class="editable" data-key="pillar5-desc">Align your work with your mission. Build high-value skills, execute with elite productivity, and create a career — or business — that actually means something.</p>
+        <div class="pillar-tags">
+          <span class="pillar-tag editable" data-key="pillar5-t1">Productivity</span>
+          <span class="pillar-tag editable" data-key="pillar5-t2">Skills</span>
+          <span class="pillar-tag editable" data-key="pillar5-t3">Purpose</span>
+        </div>
+      </div>
+
+      <!-- Soul -->
+      <div class="pillar-card pillar-soul fade-up">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+        </div>
+        <h3 class="editable" data-key="pillar6-title">Inner Peace & Soul</h3>
+        <p class="editable" data-key="pillar6-desc">True power comes from inner stillness. Develop a spiritual foundation, emotional intelligence, and a deep sense of meaning that anchors everything else you build.</p>
+        <div class="pillar-tags">
+          <span class="pillar-tag editable" data-key="pillar6-t1">Spirituality</span>
+          <span class="pillar-tag editable" data-key="pillar6-t2">Clarity</span>
+          <span class="pillar-tag editable" data-key="pillar6-t3">Meaning</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ MANIFESTO ═══ -->
+<section id="manifesto">
+  <div class="manifesto-inner">
+    <span class="manifesto-quote-mark">"</span>
+    <p class="manifesto-text editable" data-key="manifesto-quote">The version of you that wins isn't found in <em>comfort</em> — it's forged in <em>commitment</em>. Every morning is a chance to build the person the world hasn't met yet.</p>
+    <p class="manifesto-author editable" data-key="manifesto-author">— Onyx AI &amp; Improvement</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ TRANSFORMATION STEPS ═══ -->
+<section id="transform">
+  <div class="section-inner">
+    <div style="text-align:center;max-width:640px;margin:0 auto 64px;">
+      <div class="section-tag">The Method</div>
+      <h2 class="section-title editable" data-key="transform-title">Your Transformation in 4 Steps</h2>
+      <p class="section-desc editable" data-key="transform-desc" style="margin:0 auto;">A simple, proven framework to go from where you are to where you know you should be.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card fade-up">
+        <div class="step-number">1</div>
+        <h3 class="editable" data-key="step1-title">Assess Your Reality</h3>
+        <p class="editable" data-key="step1-desc">Brutal honesty about where you stand across all six pillars. No delusion. No excuses. Clear data, clear starting point.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-number">2</div>
+        <h3 class="editable" data-key="step2-title">Build Your Blueprint</h3>
+        <p class="editable" data-key="step2-desc">A personalised action plan targeting your weakest areas first. Structured, progressive, and built for your specific life.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-number">3</div>
+        <h3 class="editable" data-key="step3-title">Execute Relentlessly</h3>
+        <p class="editable" data-key="step3-desc">Show up every day. Build the systems, habits, and environment that make success inevitable — not just possible.</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-number">4</div>
+        <h3 class="editable" data-key="step4-title">Evolve &amp; Dominate</h3>
+        <p class="editable" data-key="step4-desc">Track, refine, and level up continuously. The goal isn't to arrive — it's to keep becoming. This is a lifelong pursuit of excellence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ SOCIAL MEDIA ═══ -->
+<section id="social">
+  <div class="section-inner">
+    <div class="section-tag" style="justify-content:center;">Join the Movement</div>
+    <h2 class="section-title" style="text-align:center;" ><span class="editable" data-key="social-title">Follow the Journey</span></h2>
+    <p class="social-subtitle editable" data-key="social-desc">Daily content on mindset, fitness, wealth, and living at your highest level. Join thousands already on the path.</p>
+    <div class="social-grid">
+
+      <!-- TikTok -->
+      <a class="social-card social-tiktok" id="link-tiktok-card" href="https://tiktok.com/@onyxai" target="_blank" rel="noopener">
+        <div class="social-icon" style="background:rgba(0,242,234,0.12);">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="color:#00f2ea;"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
+        </div>
+        <h3 class="editable" data-key="social-tiktok-name">TikTok</h3>
+        <p class="editable" data-key="social-tiktok-desc">Daily mindset drops &amp; life improvement content</p>
+        <span class="social-handle editable" data-key="social-tiktok-handle">@onyxai</span>
+      </a>
+
+      <!-- Instagram -->
+      <a class="social-card social-instagram" id="link-instagram-card" href="https://instagram.com/onyxai" target="_blank" rel="noopener">
+        <div class="social-icon" style="background:rgba(225,48,108,0.12);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color:#e1306c;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <h3 class="editable" data-key="social-ig-name">Instagram</h3>
+        <p class="editable" data-key="social-ig-desc">Behind the scenes, training &amp; lifestyle content</p>
+        <span class="social-handle editable" data-key="social-ig-handle">@onyxai</span>
+      </a>
+
+      <!-- YouTube -->
+      <a class="social-card social-youtube" id="link-youtube-card" href="https://youtube.com/@onyxai" target="_blank" rel="noopener">
+        <div class="social-icon" style="background:rgba(255,0,0,0.1);">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="color:#ff0000;"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+        </div>
+        <h3 class="editable" data-key="social-yt-name">YouTube</h3>
+        <p class="editable" data-key="social-yt-desc">Deep dives into every pillar of self-mastery</p>
+        <span class="social-handle editable" data-key="social-yt-handle">@OnyxAI</span>
+      </a>
+
+      <!-- Twitter/X -->
+      <a class="social-card social-twitter" id="link-twitter-card" href="https://x.com/onyxai" target="_blank" rel="noopener">
+        <div class="social-icon" style="background:rgba(29,161,242,0.1);">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="color:#e7e9ea;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </div>
+        <h3 class="editable" data-key="social-x-name">Twitter / X</h3>
+        <p class="editable" data-key="social-x-desc">Raw thoughts, philosophy &amp; daily principles</p>
+        <span class="social-handle editable" data-key="social-x-handle">@onyxai</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ CTA ═══ -->
+<section id="cta">
+  <div class="cta-box fade-up">
+    <div class="section-tag" style="justify-content:center;margin-bottom:24px;">Take Action Now</div>
+    <h2><span class="editable" data-key="cta-title">Ready to Build the Life You Deserve?</span></h2>
+    <p class="editable" data-key="cta-desc">Join the community. Get weekly insights, frameworks, and strategies delivered straight to your inbox. No spam — just growth.</p>
+    <form class="email-form" onsubmit="handleSubmit(event)">
+      <input type="email" class="email-input" placeholder="Enter your email address" required>
+      <button type="submit" class="btn-primary" style="flex-shrink:0;">
+        <span class="editable" data-key="cta-btn">Join Free</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </form>
+    <p style="font-size:12px;color:var(--muted);margin-top:16px;" class="editable" data-key="cta-sub">Join 10,000+ people already improving. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="nav-logo" href="#hero" style="text-decoration:none;">
+          <div class="nav-logo-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/><line x1="12" y1="2" x2="12" y2="22"/><path d="M2 8.5l10 7 10-7"/></svg>
+          </div>
+          <span class="nav-logo-text">ONYX AI</span>
+        </a>
+        <p class="editable" data-key="footer-desc">Helping ambitious people master every area of their life through AI-powered guidance, proven frameworks, and a relentless standard of excellence.</p>
+      </div>
+      <div class="footer-links-group">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#philosophy">Philosophy</a></li>
+          <li><a href="#pillars">The Pillars</a></li>
+          <li><a href="#transform">The Method</a></li>
+          <li><a href="#social">Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-group">
+        <h4>Connect</h4>
+        <ul>
+          <li><a id="footer-tiktok" href="https://tiktok.com/@onyxai" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a id="footer-instagram" href="https://instagram.com/onyxai" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a id="footer-youtube" href="https://youtube.com/@onyxai" target="_blank" rel="noopener">YouTube</a></li>
+          <li><a id="footer-twitter" href="https://x.com/onyxai" target="_blank" rel="noopener">Twitter / X</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="editable" data-key="footer-copy">&copy; 2026 Onyx AI &amp; Improvement. All rights reserved.</p>
+      <div class="footer-social-links">
+        <a id="footer-social-tiktok" href="https://tiktok.com/@onyxai" target="_blank" rel="noopener" title="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
+        </a>
+        <a id="footer-social-ig" href="https://instagram.com/onyxai" target="_blank" rel="noopener" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a id="footer-social-yt" href="https://youtube.com/@onyxai" target="_blank" rel="noopener" title="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+        </a>
+        <a id="footer-social-tw" href="https://x.com/onyxai" target="_blank" rel="noopener" title="Twitter/X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+//  ONYX AI — EDIT MODE
+//  Password: onyx2024   ← CHANGE THIS (search EDIT_PASSWORD)
+// ============================================================
+const EDIT_PASSWORD = 'onyx2024'; // ← CHANGE YOUR PASSWORD HERE
+
+let editMode = false;
+let logoClickCount = 0;
+let logoClickTimer;
+
+// ── Load saved content from localStorage ──
+function loadSavedContent() {
+  const saved = JSON.parse(localStorage.getItem('onyx-content') || '{}');
+  Object.entries(saved).forEach(([key, val]) => {
+    const el = document.querySelector(`[data-key="${key}"]`);
+    if (el) el.innerHTML = val;
+  });
+
+  const savedLinks = JSON.parse(localStorage.getItem('onyx-links') || '{}');
+  if (savedLinks.tiktok)    updateLink('tiktok', savedLinks.tiktok);
+  if (savedLinks.instagram) updateLink('instagram', savedLinks.instagram);
+  if (savedLinks.youtube)   updateLink('youtube', savedLinks.youtube);
+  if (savedLinks.twitter)   updateLink('twitter', savedLinks.twitter);
+}
+
+function updateLink(platform, url) {
+  const cards = { tiktok: 'link-tiktok-card', instagram: 'link-instagram-card', youtube: 'link-youtube-card', twitter: 'link-twitter-card' };
+  const footers = { tiktok: ['footer-tiktok','footer-social-tiktok'], instagram: ['footer-instagram','footer-social-ig'], youtube: ['footer-youtube','footer-social-yt'], twitter: ['footer-twitter','footer-social-tw'] };
+  const card = document.getElementById(cards[platform]);
+  if (card) card.href = url;
+  (footers[platform] || []).forEach(id => { const el = document.getElementById(id); if (el) el.href = url; });
+}
+
+// ── Activate edit mode ──
+function activateEditMode() {
+  const pw = prompt('Enter your edit password:');
+  if (pw === EDIT_PASSWORD) {
+    editMode = true;
+    document.getElementById('edit-bar').classList.add('active');
+    document.body.style.paddingTop = '48px';
+    document.querySelectorAll('.editable').forEach(el => {
+      el.contentEditable = 'true';
+      el.spellcheck = true;
+    });
+  } else if (pw !== null) {
+    alert('Incorrect password.');
+  }
+}
+
+function saveEdits() {
+  const data = {};
+  document.querySelectorAll('[data-key]').forEach(el => { data[el.dataset.key] = el.innerHTML; });
+  localStorage.setItem('onyx-content', JSON.stringify(data));
+  cancelEdits();
+  showToast('Changes saved successfully!');
+}
+
+function cancelEdits() {
+  editMode = false;
+  document.getElementById('edit-bar').classList.remove('active');
+  document.body.style.paddingTop = '0';
+  document.querySelectorAll('.editable').forEach(el => { el.contentEditable = 'false'; });
+}
+
+// ── Social links modal ──
+function openLinksModal() {
+  const saved = JSON.parse(localStorage.getItem('onyx-links') || '{}');
+  ['tiktok','instagram','youtube','twitter'].forEach(p => {
+    const el = document.getElementById('link-' + p);
+    if (el && saved[p]) el.value = saved[p];
+  });
+  document.getElementById('links-modal').classList.add('open');
+}
+
+function closeLinksModal() { document.getElementById('links-modal').classList.remove('open'); }
+
+function saveLinks() {
+  const links = {};
+  ['tiktok','instagram','youtube','twitter'].forEach(p => {
+    const val = document.getElementById('link-' + p).value.trim();
+    if (val) { links[p] = val; updateLink(p, val); }
+  });
+  localStorage.setItem('onyx-links', JSON.stringify(links));
+  closeLinksModal();
+  showToast('Social links updated!');
+}
+
+// ── Toast notification ──
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.textContent = msg;
+  Object.assign(t.style, {
+    position:'fixed', bottom:'24px', left:'50%', transform:'translateX(-50%)',
+    background:'linear-gradient(135deg,#7c3aed,#a855f7)', color:'#fff',
+    padding:'12px 24px', borderRadius:'12px', fontWeight:'600', fontSize:'14px',
+    zIndex:'99999', boxShadow:'0 8px 30px rgba(124,58,237,0.4)',
+    transition:'opacity 300ms ease', opacity:'1', fontFamily:'Inter,sans-serif'
+  });
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 2500);
+}
+
+// ── Secret edit trigger: click logo 5× ──
+document.getElementById('logo-click').addEventListener('click', (e) => {
+  e.preventDefault();
+  logoClickCount++;
+  clearTimeout(logoClickTimer);
+  if (logoClickCount >= 5) { logoClickCount = 0; activateEditMode(); }
+  else { logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 2000); }
+});
+
+// ── Keyboard shortcut: Ctrl+Shift+E ──
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.shiftKey && e.key === 'E') { e.preventDefault(); if (!editMode) activateEditMode(); }
+});
+
+// ── Navbar scroll effect ──
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// ── Scroll animations ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── Email form ──
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  const original = btn.innerHTML;
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Joined!';
+  btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+  showToast("You're in! Welcome to Onyx AI.");
+  setTimeout(() => { btn.innerHTML = original; btn.style.background = ''; e.target.reset(); }, 3000);
+}
+
+// ── Mobile menu (simple toggle) ──
+function toggleMobileMenu() {
+  const links = document.querySelector('.nav-links');
+  if (links.style.display === 'flex') {
+    links.style.display = 'none';
+  } else {
+    Object.assign(links.style, {
+      display:'flex', flexDirection:'column', position:'absolute',
+      top:'70px', left:'0', right:'0', background:'rgba(8,8,16,0.97)',
+      backdropFilter:'blur(20px)', border:'1px solid rgba(255,255,255,0.08)',
+      borderRadius:'0 0 16px 16px', padding:'24px 28px', gap:'20px'
+    });
+  }
+}
+
+// ── Init ──
+loadSavedContent();
+</script>
 </body>
 </html>
